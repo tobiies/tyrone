@@ -10,4 +10,6 @@ as of now, tyrone can:
 * recite the date and time
 * open the github
 
+more features are on the way.
+
 *tyrone is a wip (work in progress).*
