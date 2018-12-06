@@ -26,19 +26,23 @@ print(random.choice(address),names.capitalize(),", let's do some stuff.\n", sep 
 time.sleep(.5)
 print("But before we do anything, I should let you know that you can get help by typing 'help'.\n")
 
-def cls():
-    print ("\n" * 50)
+#def cls():
+#    print ("\n" * 200)
 
 def command():
     commands = input(random.choice(action)).lower()
 
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Clear\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Clear (work in progress)\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
 
-    if commands == "clear":
-        cls()
+    #if commands == "clear":
+    #    cls()
+    #    command()
+
+    if commands == "thanks":
+        print("You're welcome?\n")
         command()
         
     if commands == "date":
