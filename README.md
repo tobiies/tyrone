@@ -9,6 +9,7 @@ as of now, tyrone can:
 * show credits
 * recite the date and time
 * open the github
+* tell you about himself
 
 more features are on the way.
 
