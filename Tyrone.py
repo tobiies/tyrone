@@ -27,14 +27,19 @@ time.sleep(1)
 print("But before we do anything, I should let you know that you can get help by typing 'help'.\n")
 
 def cls():
-    print ("\n" * 200)
+    os.system('cls')
 
 def command():
     commands = input(random.choice(action)).lower()
 
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Tobi's Github)\n>>> About\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Tobi's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        command()
+
+    if commands == "clear":
+        cls()
+        print("Successfully cleared!\n")
         command()
 
     if commands == "programmer":
