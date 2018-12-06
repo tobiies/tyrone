@@ -2,7 +2,12 @@
 tyrone is a python script built to imitate a virtual assistant.
 
 # features
-as of now, tyrone can roast, say interesting factoids and say hello and bye in different ways.
-he can also recite the date and time and open the github. 
+as of now, tyrone can:
+* roast
+* say interesting factoids
+* say hello and bye in different ways
+* show credits
+* recite the date and time
+* open the github
 
-* tyrone is a wip (work in progress).
+*tyrone is a wip (work in progress).
