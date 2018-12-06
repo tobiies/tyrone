@@ -5,9 +5,10 @@ import random
 from random import randint
 import webbrowser
 import datetime
+import os
 
 action = ["Type in in what you want to do: ","Type in the desired action: ","Type something you wanna do: ","Let's do something: ","Do you wanna do something? ","What do you wanna do?: ","Choose something to do: ","Type something you wanna do: ", "Wanna do anything?: ","Wanna do something?: ","Ready to do something?: ","Let's go!: "]
-roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon","You're a wasteman!","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","Your birth certificate is an apology letter from the condom factory.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
+roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon","You're a wasteman!","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
 intro = ["Who are you? ","What's your name? ","You got a name or something? ","You got a name? "]
 address = ["Yo ","Alright ","Alright then ","Ok ","Come on ","Come on then ","Ok then "]
 facts = ["'Rhythm' is the longest English word without a vowel.","Apparently banging your head against a wall burns 150 calories a hour.","Camels have three eyelids to protect themselves from blowing sand.","The word 'queue' is the only word in the English language that is still pronounced the same way when the last four letters are removed.","'Almost' is the longest word in the English language with all the letters in alphabetical order.","Donald Duck comics were banned from Finland because he doesn't wear any pants.","Cap’n Crunch’s full name is Horatio Magellan Crunch.","More than 50% of the people in the world have never made or received a telephone call.","Coconuts kill more people in the world than sharks do. Approximately 150 people are killed each year by coconuts.","Barbie's full name is Barbara Millicent Roberts.","A sneeze can travel as fast as 100 miles per hour."]
@@ -21,15 +22,23 @@ names = name
 
 time.sleep(1)
 
-print(random.choice(address),names.capitalize(),", lets do some stuff.\n", sep ='')
+print(random.choice(address),names.capitalize(),", let's do some stuff.\n", sep ='')
 time.sleep(.5)
 print("But before we do anything, I should let you know that you can get help by typing 'help'.\n")
+
+def cls():
+    print ("\n" * 50)
 
 def command():
     commands = input(random.choice(action)).lower()
 
     if commands == "help":
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print()
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Clear\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        command()
+
+    if commands == "clear":
+        cls()
         command()
         
     if commands == "date":
@@ -39,6 +48,7 @@ def command():
         command()
 
     if commands == "help me":
+        print()
         print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Roast (alt = roast me)\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
     
@@ -51,14 +61,14 @@ def command():
 
     if commands == "roast me":
         print("Thinking of a roast...")
-        time.sleep(randint(1,3))
+        time.sleep(randint(1,2))
         print(random.choice(roasts))
         print()
         command()
 
     if commands == "fact":
         print("Picking a random fact...")
-        time.sleep(1)
+        time.sleep(randint(1,2))
         print(random.choice(facts))
         print()
         command()
