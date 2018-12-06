@@ -10,4 +10,4 @@ as of now, tyrone can:
 * recite the date and time
 * open the github
 
-*tyrone is a wip (work in progress).
+*tyrone is a wip (work in progress).*
