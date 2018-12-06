@@ -1,7 +1,7 @@
 # tyrone
 tyrone is a python script built to imitate a virtual assistant.
 
-# features
+## features
 as of now, tyrone can:
 * roast
 * say interesting factoids
