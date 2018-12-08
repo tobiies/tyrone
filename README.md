@@ -7,6 +7,8 @@ as of now, tyrone can:
 * say interesting factoids
 * say hello and bye in different ways
 * show credits
+* play music (limited)
+* tell riddles
 * recite the date and time
 * open the github
 * tell you about himself
