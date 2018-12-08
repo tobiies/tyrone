@@ -6,12 +6,13 @@ as of now, tyrone can:
 * roast
 * say interesting factoids
 * say hello and bye in different ways
-* show credits
+* translate sentences
 * play music (limited)
 * tell riddles
 * recite the date and time
 * open the github
 * tell you about himself
+* show credits
 
 **in order for tyrone to work to the best of his ability, create a folder named "tyrone" and place tyrone.py + the wav files there. without this, there may be errors encountered when attempting to play sound.**
 
