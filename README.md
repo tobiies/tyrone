@@ -14,7 +14,7 @@ as of now, tyrone can:
 * tell you about himself
 * show credits
 
-**in order for tyrone to work to the best of his ability, create a folder named "tyrone" and place tyrone.py + the wav files there. without this, there may be errors encountered when attempting to play sound.**
+**in order for tyrone to work to the best of his ability, make sure the "tyrone.py" + .wav files + the "translate" folder are in the same directory. without this, there may be errors encountered when attempting to play sound.**
 
 more features are on the way.
 
