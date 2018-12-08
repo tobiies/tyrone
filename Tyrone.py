@@ -7,6 +7,8 @@ import webbrowser
 import datetime
 import os
 import winsound
+import subprocess
+import sys
 
 action = ["Type in what you want to do: ","Type in the desired action: ","Type something you wanna do: ","Let's do something: ","Do you wanna do something? ","What do you wanna do?: ","Choose something to do: ","Type something you wanna do: ", "Wanna do anything?: ","Wanna do something?: ","Ready to do something?: ","Let's go!: "]
 roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon.","You're a wasteman.","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
@@ -28,7 +30,33 @@ print(random.choice(address),name.capitalize(),", let's do some stuff.\n", sep =
 time.sleep(1)
 print("But before we do anything, I should let you know that you can get help by typing 'help'.\n")
 
-def cls():
+def translate():
+    from translate import Translator
+    
+    inputted = input("Type something that you want to translate: ")
+    lang = input("Which language would you like to translate to? ")
+    print()
+    
+    translator= Translator(to_lang=lang)
+    translation = translator.translate(inputted)
+    print("Original:\n",inputted,"\n\n","Translated:","\n",translation, sep='')
+    print()
+    translateagain()
+
+def translateagain():
+    again = input("Translate again? Y - Yes, N - No: ").lower()
+    if again == "y":
+        print()
+        translate()
+    else:
+        print()
+        print("Returning to commands...\n")
+        command()
+
+def install(package): # Package installer
+    subprocess.call([sys.executable, "-m", "pip", "install", package])
+
+def cls(): # Clear screen
     os.system('cls')
 
 def command():
@@ -39,6 +67,24 @@ def command():
         print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
 
+    if commands == "translate":
+        print("Downloading 'Translate' package, please wait...\n")
+        install("translate")
+        print("Download finished!\n")
+        
+        print("A.) Translate\nB.) Return to commands\n")
+        option = input("What would you like to do? ").lower()
+        print()
+
+        if option == "a":
+            print("Here are the languages you can translate to...")
+            webbrowser.open('https://en.wikipedia.org/wiki/ISO_639-1', new=0, autoraise=True)
+            print()
+            translate()
+        else:
+            print("Returning to commands...\n")
+            command()
+    
     if commands == "clear":
         cls()
         print("Screen successfully cleared!\n")
@@ -87,7 +133,7 @@ def command():
         print("I'm still a work in progress, so there may be some issues or kinks that need to be worked out.")
         time.sleep(randint(2,4))
         print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by typing visiting my Github or typing 'programmer'.")
-        time.sleep(randint(2,4))
+        time.sleep(randint(3,6))
         print("Now where were we?\n")
         time.sleep(.5)
         command()
@@ -104,15 +150,13 @@ def command():
         print("Alright.\n")
         command()
     
-    if commands == "thanks": # 1/4 chance of music playing
-        choice = randint(1,4)
+    if commands == "thanks": # 1/3 chance of music playing
+        choice = randint(1,3)
         if choice == 1:
             print(random.choice(welcome))
         if choice == 2:
             print(random.choice(welcome))
         if choice == 3:
-            print(random.choice(welcome))
-        if choice == 4:
             print("Playing 'You're Welcome' by Dwayne Johnson...")
             winsound.PlaySound('moana.wav', winsound.SND_FILENAME)
         print()
