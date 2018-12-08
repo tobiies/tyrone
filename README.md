@@ -13,6 +13,8 @@ as of now, tyrone can:
 * open the github
 * tell you about himself
 
+**in order for tyrone to work to the best of his ability, create a folder named "tyrone" and place tyrone.py the wav files there. without this, there may be problems with playing sound.**
+
 more features are on the way.
 
 *tyrone is a wip (work in progress).*
