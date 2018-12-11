@@ -97,7 +97,7 @@ def command():
         command()
 
     if commands == "riddle":
-        num = randint(1,3)
+        num = randint(1,7)
         if num == 1:
             print("The more you take, the more you leave behind. What am I?\n")
             y = input("Type 'done' once you're done: ")
@@ -119,6 +119,38 @@ def command():
             z = input("Type 'done' once you're done: ")
             if z == "done":
                 print("An apple a day keeps the doctor away!\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 4:
+            print("What has hands but can’t pick up anything?\n")
+            w = input("Type 'done' once you're done: ")
+            if w == "done":
+                print("A clock.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 5:
+            print("I start off dry but come out wet. I go in light and come out heavy. What am I?\n")
+            v = input("Type 'done' once you're done: ")
+            if v == "done":
+                print("A teabag.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 6:
+            print("Why didn’t the skeleton cross the road?\n")
+            b = input("Type 'done' once you're done: ")
+            if b == "done":
+                print("He didn't have the guts.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 7:
+            print("What do you call a fish with 4 eyes?\n")
+            b = input("Type 'done' once you're done: ")
+            if b == "done":
+                print("Fiiiish.\n")
             else:
                 print("Riddle cancelled.\nReturning to commands...\n")
                 command()
