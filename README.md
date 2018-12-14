@@ -18,8 +18,8 @@ as of now, tyrone can:
 
 more features are on the way.
 
-**future additions:
-* more sound effects
-* varying commands
+**future additions
+*more sound effects
+*varying commands
 
 *tyrone is a wip (work in progress).*
