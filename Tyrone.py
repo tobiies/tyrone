@@ -1,4 +1,4 @@
-# Tyrone: a script built to mimic a virtual assistant
+# Tyrone - a script built to mimic a virtual assistant
 
 import time
 import random
@@ -13,14 +13,13 @@ import sys
 action = ["Type in what you want to do: ","Type in the desired action: ","Type something you wanna do: ","Let's do something: ","Do you wanna do something? ","What do you wanna do?: ","Choose something to do: ","Type something you wanna do: ", "Wanna do anything?: ","Wanna do something?: ","Ready to do something?: ","Let's go!: "]
 roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon.","You're a wasteman.","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
 intro = ["So who are you? ","So what's your name? ","What's your name? ","You got a name or something? ","You got a name? "]
-address = ["Hi ","Hey ","Yo ","Alright ","Alright then ","Ok ","Come on ","Come on then ","Ok then "]
+address = ["What's up ","Hi ","Hey ","Yo ","Alright ","Alright then ","Ok ","Come on ","Come on then ","Ok then "]
 facts = ["Did you know Sweden has a ski-through McDonald's?","Research has shown that dogs actually like the silly, high-pitched voice their owners use to talk to them.","A report found that the free weights at the gym have 362 times more bacteria than a toilet seat.","People who think their opinions are superior to others may be most prone to overestimating their relevant knowledge and ignoring chances to learn more, a study found.","Netflix is responsible for 15% of global Internet traffic.","The 57 on Heinz ketchup bottles represents the number of varieties of pickles the company once had.","The plastic things on the end of shoelaces are called aglets.","You burn more calories sleeping than you do watching TV.","Stressed is Desserts spelled backwards.","Karoke means 'empty orchestra' in Japanese.","Cats sleep 16 to 18 hours per day.","'Rhythm' is the longest English word without a vowel.","Apparently banging your head against a wall burns 150 calories a hour.","Camels have three eyelids to protect themselves from blowing sand.","The word 'queue' is the only word in the English language that is still pronounced the same way when the last four letters are removed.","'Almost' is the longest word in the English language with all the letters in alphabetical order.","Donald Duck comics were banned from Finland because he doesn't wear any pants.","Cap’n Crunch’s full name is Horatio Magellan Crunch.","More than 50% of the people in the world have never made or received a telephone call.","Coconuts kill more people in the world than sharks do. Approximately 150 people are killed each year by coconuts.","Barbie's full name is Barbara Millicent Roberts.","A sneeze can travel as fast as 100 miles per hour."]
 welcome = ["No worries!","No problem.","Don't mention it :)","My pleasure :)","What can I say, except...","You're welcome?","Varsågod!","You're welcome?","It's a pleasure!","It's all good :)","No, thank *you*","Alright.","Ok.","Thank you for the appreciation :)"]
 invalid = ["Command is unavailable.","This action isn't available.","This command doesn't appear to work.","I think you've made a mistake somewhere.","Sorry, you might have made a spelling mistake.","Check for any spelling mistakes.","Check for any mistakes.","You might have made a mistake.","Sorry, that's an invalid command.","Invalid command.","That's an invalid command.","This command doesn't work."]
 bye = ["In a bit.","Until next time...","I'll see you later.","See ya!","Bye.","See ya later!","I bid you adieu!"]
-hello = ["Greetings ","Howdy ","Why hello there ","How's it going ","It's nice to meet you ","Hello again, ","Hi ","What's up ","Hey ","Hi there "," Hi again "]
+dates = ["Eleesha","Merilyn","Olabode","Celestina","Maya","Tisha","Aisha","Simon","Phillip","Stu","Karie"]
 
-print("Booting...\n")
 winsound.PlaySound('xp.wav', winsound.SND_FILENAME)
 
 print("What's up? I'm Tyrone.")
@@ -29,14 +28,14 @@ name = input(random.choice(intro))
 time.sleep(1)
 
 print(random.choice(address),name.capitalize(),", let's do some stuff.\n", sep ='')
-time.sleep(randint(1,2))
+time.sleep(1)
 print("But before we do anything, I should let you know that you can get help by typing 'help'.\n")
 
 def translate():
-    from translate import Translator   
+    from translate import Translator
     
-    inputted = input("Type some sentences: ")
-    lang = input("Which language would you like to translate to? (e.g. SV, FR, IT) ")
+    inputted = input("Type something that you want to translate: ")
+    lang = input("Which language would you like to translate to? ")
     print()
     
     translator= Translator(to_lang=lang)
@@ -58,15 +57,6 @@ def translateagain():
 def install(package): # Package installer
     subprocess.call([sys.executable, "-m", "pip", "install", package])
 
-def mxgames(game): # Games
-    ok = subprocess.call([sys.executable, "python", "-m", "mxgames.",game],sep='')
-    print(ok)
-
-def google():
-    query = input("What would you like to search? ")
-    print()
-    command()
-    
 def cls(): # Clear screen
     os.system('cls')
 
@@ -75,50 +65,26 @@ def command():
 
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Hello\n>>> Games\n>>> Help (alt = help me)\n>>> Riddle\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Translate\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
-
-    if commands == "google":
-        google()
-        print()
-        command()
-
-    if commands == "games":
-        print("\nA.) Snake\nB.) 2048\nC.) Tetris\n")
-        gamechoice = input("Choose a game to play: ").lower()
-
-        if gamechoice == "a":
-            os.system("games\snake.py")
-        if gamechoice == "snake":
-            os.system("games\snake.py")
-        if gamechoice == "b":
-            os.system("games\2048.py")
-        if gamechoice == "2048":
-            os.system("games\2048.py")
-        if gamechoice == "c":
-            os.system("games\tetris.py")
-        if gamechoice == "tetris":
-            os.system("games\tetris.py")
-        else:
-            print("\nReturning to commands...\n")
-            command()
 
     if commands == "translate":
-            print("Downloading 'Translate' package, please wait...\n")
-            install("translate")
-            print("Download finished!\n")
-            print("A.) Translate\nB.) Return to commands\n")
-            option = input("What would you like to do? ").lower()
-            print()
+        print("Downloading 'Translate' package, please wait...\n")
+        install("translate")
+        print("Download finished!\n")
+        
+        print("A.) Translate\nB.) Return to commands\n")
+        option = input("What would you like to do? ").lower()
+        print()
 
-            if option == "a":
-                print("Here are the languages you can translate to...")
-                webbrowser.open('https://en.wikipedia.org/wiki/ISO_639-1', new=0, autoraise=True)
-                print()
-                translate()
-            else:
-                print("Returning to commands...\n")
-                command()
+        if option == "a":
+            print("Here are the languages you can translate to...")
+            webbrowser.open('https://en.wikipedia.org/wiki/ISO_639-1', new=0, autoraise=True)
+            print()
+            translate()
+        else:
+            print("Returning to commands...\n")
+            command()
     
     if commands == "clear":
         cls()
@@ -132,7 +98,7 @@ def command():
         command()
 
     if commands == "riddle":
-        num = randint(1,3)
+        num = randint(1,7)
         if num == 1:
             print("The more you take, the more you leave behind. What am I?\n")
             y = input("Type 'done' once you're done: ")
@@ -157,6 +123,38 @@ def command():
             else:
                 print("Riddle cancelled.\nReturning to commands...\n")
                 command()
+        if num == 4:
+            print("What has hands but can’t pick up anything?\n")
+            w = input("Type 'done' once you're done: ")
+            if w == "done":
+                print("A clock.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 5:
+            print("I start off dry but come out wet. I go in light and come out heavy. What am I?\n")
+            v = input("Type 'done' once you're done: ")
+            if v == "done":
+                print("A teabag.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 6:
+            print("Why didn’t the skeleton cross the road?\n")
+            b = input("Type 'done' once you're done: ")
+            if b == "done":
+                print("He didn't have the guts.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
+        if num == 7:
+            print("What do you call a fish with 4 eyes?\n")
+            b = input("Type 'done' once you're done: ")
+            if b == "done":
+                print("Fiiiish.\n")
+            else:
+                print("Riddle cancelled.\nReturning to commands...\n")
+                command()
         command()
 
     if commands == "about":
@@ -166,7 +164,7 @@ def command():
         print("You can find out more about me on my Github by typing 'Github' or 'Git'.")
         time.sleep(randint(2,4))
         print("I'm still a work in progress, so there may be some issues or kinks that need to be worked out.")
-        time.sleep(randint(2,4))
+        time.sleep(randint(3,6))
         print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by typing visiting my Github or typing 'programmer'.")
         time.sleep(randint(3,6))
         print("Now where were we?\n")
@@ -175,6 +173,38 @@ def command():
         
     if commands == "no":
         print("YES!\n")
+        command()
+
+    response = ["Same!","I like it!","Sounds pretty interesting.","Hmmm... Alright then.","Awesome. I like it too!","That's pretty cool!","Interesting!","Cool!","Interesting... I guess.","Eurrgh! What's that? HAHAHA!"]
+    foods = ["Same!","I love that!","I think they're great!","Ok.","Cool!","I don't really like them..."]
+
+    if commands == "tinder": # Tinder dating
+        print("Loading 'Tinder Dates'...\n")
+        time.sleep(randint(1,3))
+        # play music
+        print("Welcome to Tinder Dates, ",name.capitalize(),"!", sep= '')
+        print()
+        time.sleep(1)
+        print("Today, your date's name is...")
+        # drum roll
+        time.sleep(2)
+        print(random.choice(dates))
+        print()
+        print("Ok, ",name.capitalize(),"! Let's go!",sep= '')
+        job = input("So your date's first question is... What is your job? ")
+        time.sleep(randint(1,3))
+        print(random.choice(response))
+        print()
+        food = input("So their next question is... What's your favourite food? ")
+        print(random.choice(foods))
+        print()
+        print("Ending 'Tinder Dates'. Hope you had a good date!")
+        
+        farewell = input("Now say goodbye to your date. Or not: ").lower()
+        if farewell == "bye":
+            print("Bye ",name.capitalize(),"!",sep= '')
+        else:
+            print("Well screw you, I never liked you anyway!\n")
         command()
 
     if commands == "yes":
@@ -205,7 +235,7 @@ def command():
 
     if commands == "help me":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Translate\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle \n>>> Roast (alt = roast me)\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
     
     if commands == "roast":
@@ -217,7 +247,7 @@ def command():
 
     if commands == "roast me":
         print("Thinking of a roast...")
-        time.sleep(randint(1,3))
+        time.sleep(randint(1,2))
         print(random.choice(roasts))
         print()
         command()
@@ -227,10 +257,6 @@ def command():
         time.sleep(randint(1,2))
         print(random.choice(facts))
         print()
-        command()
-
-    if commands == "hello":
-        print(random.choice(hello),"Justin.\n",sep ='')
         command()
 
     if commands == "github":
