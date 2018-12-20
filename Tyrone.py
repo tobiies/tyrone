@@ -186,23 +186,28 @@ def command():
         print()
         time.sleep(1)
         print("Today, your date's name is...")
-        # drum roll
+        winsound.PlaySound('drum-roll.wav',winsound.SND_FILENAME) # Drum roll
         time.sleep(2)
         print(random.choice(dates))
         print()
         print("Ok, ",name.capitalize(),"! Let's go!",sep= '')
         job = input("So your date's first question is... What is your job? ")
-        time.sleep(randint(1,3))
+        time.sleep(randint(1,2))
         print(random.choice(response))
         print()
         food = input("So their next question is... What's your favourite food? ")
+        time.sleep(randint(1,2))
         print(random.choice(foods))
+        print("\nThis seems to be going ok.")
+        hobby = input("Alright then. So your date wants to know what your hobby is. What's your hobby? ")
+        time.sleep(randint(1,2))
+        print(random.choice(response))
         print()
         print("Ending 'Tinder Dates'. Hope you had a good date!")
         
         farewell = input("Now say goodbye to your date. Or not: ").lower()
-        if farewell == "bye":
-            print("Bye ",name.capitalize(),"!",sep= '')
+        if farewell == "good bye" or "goodbye" or "bye":
+            print("Bye ",name.capitalize(),"! Hope to see you again!\n",sep= '')
         else:
             print("Well screw you, I never liked you anyway!\n")
         command()
