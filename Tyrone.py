@@ -206,7 +206,7 @@ def command():
         print("Ending 'Tinder Dates'. Hope you had a good date!")
         
         farewell = input("Now say goodbye to your date. Or not: ").lower()
-        if farewell == "good bye" or "goodbye" or "bye":
+        if farewell == "goodbye":
             print("Bye ",name.capitalize(),"! Hope to see you again!\n",sep= '')
         else:
             print("Well screw you, I never liked you anyway!\n")
