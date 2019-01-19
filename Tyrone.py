@@ -10,6 +10,8 @@ import winsound
 import subprocess
 import sys
 
+translated = False
+
 action = ["Type in what you want to do: ","Type in the desired action: ","Type something you wanna do: ","Let's do something: ","Do you wanna do something? ","What do you wanna do?: ","Choose something to do: ","Type something you wanna do: ", "Wanna do anything?: ","Wanna do something?: ","Ready to do something?: ","Let's go!: "]
 roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon.","You're a wasteman.","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
 intro = ["So who are you? ","So what's your name? ","What's your name? ","You got a name or something? ","You got a name? "]
@@ -63,9 +65,36 @@ def cls(): # Clear screen
 def command():
     commands = input(random.choice(action)).lower()
 
+    translated = False
+
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Search (search the web with DuckDuckGo / YouTube)\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        command()
+
+    if commands == "search":
+        engine = input("\nDuckDuckGo/DDG or YouTube/YT?\nWhat do you want to search on?: ").lower()
+        query = input("What would you like to search?: ")
+
+        if engine == "youtube":
+            print("Searching",query, "on YouTube...")
+            webbrowser.open('https://www.youtube.com/results?search_query='+query)
+
+        if engine == "yt":
+            print("Searching",query, "on YouTube...")
+            webbrowser.open('https://www.youtube.com/results?search_query='+query)
+
+        if engine == "duckduckgo":
+            print("Searching",query, "on DuckDuckGo...")
+            webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
+            print()
+
+        if engine == "ddg":
+            print("Searching",query, "on DuckDuckGo...")
+            webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
+            print()
+
+        print("\nReturning to commands...")
         command()
 
     if commands == "translate":
@@ -77,9 +106,20 @@ def command():
         option = input("What would you like to do? ").lower()
         print()
 
-        if option == "a":
+        if translated == False:
             print("Here are the languages you can translate to...")
             webbrowser.open('https://en.wikipedia.org/wiki/ISO_639-1', new=0, autoraise=True)
+        else:
+            if option == "a":
+                print()
+                translate()
+            else:
+                print("Returning to commands...\n")
+                command()
+            
+        translated = True
+            
+        if option == "a":
             print()
             translate()
         else:
@@ -206,7 +246,7 @@ def command():
         print("Ending 'Tinder Dates'. Hope you had a good date!")
         
         farewell = input("Now say goodbye to your date. Or not: ").lower()
-        if farewell == "goodbye":
+        if farewell == "good bye" or "goodbye" or "bye":
             print("Bye ",name.capitalize(),"! Hope to see you again!\n",sep= '')
         else:
             print("Well screw you, I never liked you anyway!\n")
