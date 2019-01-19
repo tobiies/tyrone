@@ -9,7 +9,7 @@ as of now, tyrone can:
 * translate sentences
 * play music (limited)
 * tell riddles
-* SEARCH THE WEB WITH DUCKDUCKGO AND YOUTUBE!
+* search the web
 * recite the date and time
 * open the github
 * tell you about himself
