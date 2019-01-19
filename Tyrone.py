@@ -69,32 +69,35 @@ def command():
 
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Search (search the web with DuckDuckGo / YouTube)\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Search (Google, Wikipedia, DuckDuckGo or YouTube)\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
 
     if commands == "search":
-        engine = input("\nDuckDuckGo/DDG or YouTube/YT?\nWhat do you want to search on?: ").lower()
+        engine = input("\nGoogle, Wikipedia, DuckDuckGo or YouTube?\nWhat do you want to search on?: ").lower()
         query = input("What would you like to search?: ")
 
+        if engine == "wikipedia":
+            print('Searching "', query.capitalize(), '" on Wikipedia...',sep='')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+query)
+        
+        if engine == "google":
+            print('Searching "', query.capitalize(), '" on Google...',sep='')
+            webbrowser.open('https://www.google.com/search?q='+query)
+        
         if engine == "youtube":
-            print("Searching",query, "on YouTube...")
+            print('Searching "', query.capitalize(), '" on YouTube...',sep='')
             webbrowser.open('https://www.youtube.com/results?search_query='+query)
 
         if engine == "yt":
-            print("Searching",query, "on YouTube...")
+            print('Searching "', query.capitalize(), '" on YouTube...',sep='')
             webbrowser.open('https://www.youtube.com/results?search_query='+query)
 
         if engine == "duckduckgo":
-            print("Searching",query, "on DuckDuckGo...")
+            print('Searching "', query.capitalize(), '" on DuckDuckGo...',sep='')
             webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
             print()
 
-        if engine == "ddg":
-            print("Searching",query, "on DuckDuckGo...")
-            webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
-            print()
-
-        print("\nReturning to commands...")
+        print("\nLikely invalid search engine / error! Returning to commands...\n")
         command()
 
     if commands == "translate":
@@ -205,7 +208,7 @@ def command():
         time.sleep(randint(2,4))
         print("I'm still a work in progress, so there may be some issues or kinks that need to be worked out.")
         time.sleep(randint(3,6))
-        print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by typing visiting my Github or typing 'programmer'.")
+        print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by visiting my Github or typing 'programmer'.")
         time.sleep(randint(3,6))
         print("Now where were we?\n")
         time.sleep(.5)
