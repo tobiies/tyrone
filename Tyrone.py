@@ -66,16 +66,43 @@ def command():
     commands = input(random.choice(action)).lower()
 
     translated = False
-
+    
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Search (Google, Wikipedia, DuckDuckGo or YouTube)\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Search (Google, Wikipedia, DuckDuckGo, YouTube or Custom URL)\n>>> Feedback\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        command()
+    
+    if commands == "feedback":
+        file = open("feedback.txt","w")
+        feedback = input("Type your feedback here: ")
+        file.write(feedback)
+        file.close()
+        print("Feedback saved! Feedback can be viewed in the Tyrone directory. Opening Paste.ee...\n")
+        time.sleep(2)
+        webbrowser.open("https://paste.ee/")
         command()
 
+    if commands == "speech recognition":
+        install("SpeechRecognition")
+        import speech_recognition as sr
+        r = sr.Recognizer()
+        print()
+        
+        sound = sr.AudioFile('audio.wav')
+        with sound as source:
+            audio = r.record(source)
+
+        print("Recognizing audio...")
+        r.recognize_google(audio)
+
     if commands == "search":
-        engine = input("\nGoogle, Wikipedia, DuckDuckGo or YouTube?\nWhat do you want to search on?: ").lower()
+        engine = input("\nGoogle, Wikipedia, DuckDuckGo, YouTube or Custom URL (type 'custom')?\nWhat do you want to search on?: ").lower()
         query = input("What would you like to search?: ")
 
+        if engine == "custom":
+            print("Opening ", query, "!", sep='')
+            webbrowser.open(query)
+        
         if engine == "wikipedia":
             print('Searching "', query.capitalize(), '" on Wikipedia...',sep='')
             webbrowser.open('https://en.wikipedia.org/wiki/'+query)
@@ -97,7 +124,7 @@ def command():
             webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
             print()
 
-        print("\nLikely invalid search engine / error! Returning to commands...\n")
+        print("\nReturning to commands...\n")
         command()
 
     if commands == "translate":
