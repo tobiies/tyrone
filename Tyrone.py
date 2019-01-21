@@ -10,8 +10,6 @@ import winsound
 import subprocess
 import sys
 
-translated = False
-
 action = ["Type in what you want to do: ","Type in the desired action: ","Type something you wanna do: ","Let's do something: ","Do you wanna do something? ","What do you wanna do?: ","Choose something to do: ","Type something you wanna do: ", "Wanna do anything?: ","Wanna do something?: ","Ready to do something?: ","Let's go!: "]
 roasts = ["You're so stupid, I could count your brain cells on one hand.","You're so stupid, you went to the dentist to get Bluetooth.","As a failure, you are a great success.","Come back and talk to me when your I.Q. exceeds your age.","You're the reason this country has to put directions on shampoo.","If you really spoke your mind, you'd be speechless.","Have you been shopping lately? They're selling lives, you should go get one.","You're like Monday mornings, nobody likes you.","How old are you? - Wait I shouldn't ask, you can't count that high.","The last time I saw something like you, I flushed it.","Some babies were dropped on their heads but you were clearly thrown at a wall.","Calling you an idiot would be an insult to all the stupid people.","You, sir, are an oxygen thief!","I can explain something to you, but I can’t understand it for you.","If I wanted to kill myself I'd climb your ego and jump to your IQ.","You're so ugly, when your mom dropped you off at school she got a fine for littering.","You're so ugly, you scared the crap out of the toilet","You're so dumb you got hit by a parked car","You're an idiot","Paigon.","You're a wasteman.","I'd slap you, but that would be animal abuse.","Please shut your mouth when you’re talking to me.","If I had a face like yours, I'd sue my parents.","It's better to let someone think you are an idiot than to open your mouth and prove it."]
 intro = ["So who are you? ","So what's your name? ","What's your name? ","You got a name or something? ","You got a name? "]
@@ -21,6 +19,8 @@ welcome = ["No worries!","No problem.","Don't mention it :)","My pleasure :)","W
 invalid = ["Command is unavailable.","This action isn't available.","This command doesn't appear to work.","I think you've made a mistake somewhere.","Sorry, you might have made a spelling mistake.","Check for any spelling mistakes.","Check for any mistakes.","You might have made a mistake.","Sorry, that's an invalid command.","Invalid command.","That's an invalid command.","This command doesn't work."]
 bye = ["In a bit.","Until next time...","I'll see you later.","See ya!","Bye.","See ya later!","I bid you adieu!"]
 dates = ["Eleesha","Merilyn","Olabode","Celestina","Maya","Tisha","Aisha","Simon","Phillip","Stu","Karie"]
+hellos = ["¿Que pasa?","¿Cómo estás?","¡Hola!","How's it going?","Hello!","Hey!","What's up?","Hi.","'Ello!"]
+response = ["Ok.","Cool.","Alright."]
 
 winsound.PlaySound('xp.wav', winsound.SND_FILENAME)
 
@@ -51,25 +51,43 @@ def translateagain():
     if again == "y":
         print()
         translate()
+    if again == "yes":
+        print()
+        translate()
     else:
         print()
         print("Returning to commands...\n")
         command()
 
 def install(package): # Package installer
-    subprocess.call([sys.executable, "-m", "pip", "install", package])
+    try:
+        subprocess.call([sys.executable, "-m", "pip", "install", package])
+    except ImportError:
+        print("Installation of package failed.")
+        command()
 
 def cls(): # Clear screen
     os.system('cls')
 
 def command():
     commands = input(random.choice(action)).lower()
+    firstSpeak = True
 
-    translated = False
+    if commands == "download":
+        print("Installing SpeechRecognition package...\n")
+        install("SpeechRecognition")
+        print("\nInstalling PyAudio\n")
+        install("PyAudio")
+        print()
     
     if commands == "help":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Search (Google, Wikipedia, DuckDuckGo, YouTube or Custom URL)\n>>> Feedback\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Speech (speech recognition)\n>>> Search (Google, Wikipedia, DuckDuckGo, YouTube or Custom URL)\n>>> Feedback\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        command()
+
+    if commands == "hello":
+        print(random.choice(hellos))
+        print()
         command()
     
     if commands == "feedback":
@@ -77,27 +95,113 @@ def command():
         feedback = input("Type your feedback here: ")
         file.write(feedback)
         file.close()
-        print("Feedback saved! Feedback can be viewed in the Tyrone directory. Opening Paste.ee...\n")
+        print("Feedback saved! Feedback can be viewed in the Tyrone directory.\n")
         time.sleep(2)
-        webbrowser.open("https://paste.ee/")
         command()
 
-    if commands == "speech recognition":
-        install("SpeechRecognition")
+    if commands == "speech": # speech recognition stuff
         import speech_recognition as sr
         r = sr.Recognizer()
-        print()
+        mic = sr.Microphone()
+        voiceAttempts = 0
         
-        sound = sr.AudioFile('audio.wav')
-        with sound as source:
-            audio = r.record(source)
+        with mic as source:
+            print("Adjusting for ambient noise...")
+            r.adjust_for_ambient_noise(source)
+            print("Tyrone is now listening...\n")
+            audio = r.listen(source)
 
-        print("Recognizing audio...")
-        r.recognize_google(audio)
+        try:
+            text = r.recognize_google(audio)
+            print('Tyrone heard: {}'.format(text))
+            print()
+            time.sleep(1)
+            
+            # if any of these are detected in your speech, they'll carry out the following
+            if "hello" in text:
+                print(random.choice(hellos))
+            if "bye" in text:
+                print(random.choice(bye))
+                winsound.PlaySound('xp-shutdown.wav', winsound.SND_FILENAME)
+                exit()
+            if "clear" in text:
+                cls()
+                print("Screen successfully cleared!\n")
+            if "Tyrone" in text:
+                tyroneChoice = randint(1,2)
+                if tyroneChoice == 1:
+                    print("Yup, that's me!")
+                else:
+                    print(random.choice(hellos))
+            if "about" in text:
+                print()
+                print("I'm Tyrone. I'm a Python script built to imitate a virtual assistant.")
+                time.sleep(randint(2,3))
+                print("You can find out more about me on my Github by typing 'Github' or 'Git'.")
+                time.sleep(randint(2,4))
+                print("I'm still a work in progress, so there may be some issues or kinks that need to be worked out.")
+                time.sleep(randint(2,5))
+                print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by visiting my Github, typing 'programmer' or using the feedback option.")
+                time.sleep(randint(2,5))
+                print("Now where were we?\n")
+                time.sleep(1)
+            if "yes" in text:
+                print("NO!\n")
+            if "no" in text:
+                print("YES!\n")
+            if "ok" in text:
+                print("Alright.\n")
+            if "thank" in text: # 1/3 chance of music playing
+                choice = randint(1,3)
+                if choice == 1:
+                    print(random.choice(welcome))
+                if choice == 2:
+                    print(random.choice(welcome))
+                if choice == 3:
+                    print("Playing 'You're Welcome' by Dwayne Johnson...")
+                    winsound.PlaySound('moana.wav', winsound.SND_FILENAME)
+            if "date" in text:
+                today = time.strftime('%d/%m/%Y %H:%M:%S')
+                print("The current date and time is",today)
+            if "help" in text:
+                print()
+                print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Speech (speech recognition)\n>>> Search (Google, Wikipedia, DuckDuckGo, YouTube or Custom URL)\n>>> Feedback\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+            if "roast" in text:
+                print("Thinking of a roast...")
+                time.sleep(randint(1,3))
+                print(random.choice(roasts))
+            if "fact" in text:
+                print("Picking a random fact...")
+                time.sleep(randint(1,2))
+                print(random.choice(facts))
+            if "github" in text:
+                print("Opening Tyrone's Github...")
+                webbrowser.open('https://github.com/tobiies/tyrone-ai', new=0, autoraise=True)
+            if "git" in text:
+                print("Opening Tyrone's Github...")
+                webbrowser.open('https://github.com/tobiies/tyrone-ai', new=0, autoraise=True)
+            if "credit" in text:
+                print(">>> Tobi - programmer (github.com/tobiies)\n>>> Pun.me - roasts (pun.me/pages/funny-insults.php)\n>>> Factslides - facts (factslides.com)\n>>> Riddles.com - riddles (https://www.riddles.com/best-riddles)\n")
+            if "programmer" in text:
+                print("Opening Tobi's Github...")
+                webbrowser.open('https://github.com/tobiies', new=0, autoraise=True)
+            else:
+                print()
+                command()
+        except sr.RequestError:
+            print("Sorry, Speech Recognition API is unavailable.\nReturning to commands...")
+            time.sleep(1)
+            print()
+        except sr.UnknownValueError:
+            print("Sorry, Tyrone couldn't understand your speech.\nReturning to commands...")
+            time.sleep(1)
+            print()
+
+        command()
 
     if commands == "search":
         engine = input("\nGoogle, Wikipedia, DuckDuckGo, YouTube or Custom URL (type 'custom')?\nWhat do you want to search on?: ").lower()
-        query = input("What would you like to search?: ")
+        query = input("What would you like to search? ")
 
         if engine == "custom":
             print("Opening ", query, "!", sep='')
@@ -124,6 +228,12 @@ def command():
             webbrowser.open('https://duckduckgo.com/?q='+ query +'&t=h_')
             print()
 
+        if engine == "soundcloud":
+            print('Searching "', query.capitalize(), '" on SoundCloud...',sep='')
+            webbrowser.open('https://soundcloud.com/search?q='+ query)
+            print()
+
+        time.sleep(1)
         print("\nReturning to commands...\n")
         command()
 
@@ -135,20 +245,7 @@ def command():
         print("A.) Translate\nB.) Return to commands\n")
         option = input("What would you like to do? ").lower()
         print()
-
-        if translated == False:
-            print("Here are the languages you can translate to...")
-            webbrowser.open('https://en.wikipedia.org/wiki/ISO_639-1', new=0, autoraise=True)
-        else:
-            if option == "a":
-                print()
-                translate()
-            else:
-                print("Returning to commands...\n")
-                command()
-            
-        translated = True
-            
+        
         if option == "a":
             print()
             translate()
@@ -157,6 +254,11 @@ def command():
             command()
     
     if commands == "clear":
+        cls()
+        print("Screen successfully cleared!\n")
+        command()
+
+    if commands == "clr":
         cls()
         print("Screen successfully cleared!\n")
         command()
@@ -230,15 +332,15 @@ def command():
     if commands == "about":
         print()
         print("I'm Tyrone. I'm a Python script built to imitate a virtual assistant.")
-        time.sleep(randint(2,4))
+        time.sleep(randint(2,3))
         print("You can find out more about me on my Github by typing 'Github' or 'Git'.")
         time.sleep(randint(2,4))
         print("I'm still a work in progress, so there may be some issues or kinks that need to be worked out.")
-        time.sleep(randint(3,6))
-        print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by visiting my Github or typing 'programmer'.")
-        time.sleep(randint(3,6))
+        time.sleep(randint(2,5))
+        print("If you find a problem with me, you can contact my programmer / adoptive father Tobi by visiting my Github, typing 'programmer' or using the feedback option.")
+        time.sleep(randint(2,5))
         print("Now where were we?\n")
-        time.sleep(.5)
+        time.sleep(1)
         command()
         
     if commands == "no":
@@ -260,23 +362,41 @@ def command():
         time.sleep(2)
         print(random.choice(dates))
         print()
+        
         print("Ok, ",name.capitalize(),"! Let's go!",sep= '')
         job = input("So your date's first question is... What is your job? ")
         time.sleep(randint(1,2))
         print(random.choice(response))
         print()
+        
         food = input("So their next question is... What's your favourite food? ")
         time.sleep(randint(1,2))
         print(random.choice(foods))
+        
         print("\nThis seems to be going ok.")
+        time.sleep(randint(0,2))
         hobby = input("Alright then. So your date wants to know what your hobby is. What's your hobby? ")
         time.sleep(randint(1,2))
         print(random.choice(response))
+        
+        travel = input("\nYour date asks: where have you travelled to? ")
+        time.sleep(randint(1,2))
+        print(random.choice(response))
+        
+        print("\nOk, so their next question is... ")
+        restaurant = input("What's your favourite restaurant? ")
+        time.sleep(randint(1,2))
+        print(random.choice(foods))
+
+        artist = input("\nYour date wants to know what your favourite music artist is: ")
+        time.sleep(randint(1,2))
+        print(random.choice(foods))
+        
         print()
         print("Ending 'Tinder Dates'. Hope you had a good date!")
         
         farewell = input("Now say goodbye to your date. Or not: ").lower()
-        if farewell == "good bye" or "goodbye" or "bye":
+        if farewell == "see you" or "see ya" or "good bye" or "goodbye" or "bye":
             print("Bye ",name.capitalize(),"! Hope to see you again!\n",sep= '')
         else:
             print("Well screw you, I never liked you anyway!\n")
@@ -310,7 +430,7 @@ def command():
 
     if commands == "help me":
         print()
-        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle \n>>> Roast (alt = roast me)\n>>> Fact\n>>> Date (date and time)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
+        print("Here are some actions / commands that might help you\n>>> Help (alt = help me)\n>>> Riddle\n>>> Translate\n>>> Speech (speech recognition)\n>>> Search (Google, Wikipedia, DuckDuckGo, YouTube or Custom URL)\n>>> Feedback\n>>> Tinder\n>>> Roast (alt = roast me)\n>>> Thanks\n>>> Fact\n>>> Programmer (Creator's Github)\n>>> About\n>>> Date (date and time)\n>>> Clear (clear screen)\n>>> Github (alt = git)\n>>> Credits (alt = credit)\n>>> Bye\n")
         command()
     
     if commands == "roast":
