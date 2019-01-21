@@ -6,7 +6,7 @@ as of now, tyrone can:
 * roast
 * say interesting factoids
 * say hello and bye in different ways
-* translate sentences
+* translate sentences (requires pyaudio)
 * play music (limited)
 * tell riddles
 * search the web
